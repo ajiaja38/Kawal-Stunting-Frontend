@@ -86,7 +86,10 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                   </td>
                   <td className="whitespace-normal text-center px-4 py-2 text-gray-700">
                     <Link to={`/data-surveyor/process/${data.GUID_REPORT}/${data.GUID_RESULT}/${data.NAME}`}>
-                      <button className=' text-white rounded-md bg-main hover:bg-secondary active:bg-main p-2 transition-all ease-linear duration-100'>
+                      <button
+                        disabled={!!data.PROCESS}
+                        className=' text-white rounded-md bg-main hover:bg-secondary active:bg-main p-2 transition-all ease-linear duration-100'
+                      >
                         Proses
                       </button>
                     </Link>
