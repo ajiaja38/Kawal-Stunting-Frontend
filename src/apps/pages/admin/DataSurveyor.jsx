@@ -23,7 +23,6 @@ const DataSurveyor = () => {
       }
 
       const response = await SourceSurveyor.getAllDataSurvey(data)
-      console.log(response)
       dispatch(setDataSurvey(response.data))
       setTotalPages(response.totalPages)
     } catch (error) {
