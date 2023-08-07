@@ -2,6 +2,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Pagination from './Pagination'
+import { Link } from 'react-router-dom'
 
 const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
   const { dataSurvey } = useSelector((state) => state.data)
@@ -84,9 +85,11 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                     }
                   </td>
                   <td className="whitespace-normal text-center px-4 py-2 text-gray-700">
-                    <button className=' text-white rounded-md bg-main hover:bg-secondary active:bg-main p-2 transition-all ease-linear duration-100'>
-                      Proses
-                    </button>
+                    <Link to={`/data-surveyor/process/${data.GUID_REPORT}/${data.GUID_RESULT}/${data.NAME}`}>
+                      <button className=' text-white rounded-md bg-main hover:bg-secondary active:bg-main p-2 transition-all ease-linear duration-100'>
+                        Proses
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))

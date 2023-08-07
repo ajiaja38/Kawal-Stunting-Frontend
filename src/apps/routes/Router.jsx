@@ -14,7 +14,8 @@ import {
   DetailDataAnak,
   DataSurveyor,
   DataAnak,
-  AddDataAnak
+  AddDataAnak,
+  ProcessDataSurvey
 } from '../pages'
 import RequireAuth from './utils/RequireAuth'
 
@@ -27,10 +28,13 @@ const Router = () => {
 
         <Route element={<RequireAuth redirecPath='/acces-denied' />}>
           <Route path='/dashboard' element={<DashboardAdmin/>} />
-          <Route path='/data-surveyor' element={<DataSurveyor/>} />
+
           <Route path='/data-anak' element={<DataAnak/>} />
           <Route path='/data-anak/:id' element={<DetailDataAnak/>}/>
           <Route path='/data-anak/add' element={<AddDataAnak/>}/>
+
+          <Route path='/data-surveyor' element={<DataSurveyor/>} />
+          <Route path='/data-surveyor/process/:guidReport/:guidResult/:name' element={<ProcessDataSurvey/>}/>
 
           <Route path='/posyandu' element={<Posyandu/>} />
           <Route path='/kartu-posyandu' element={<KartuPosyandu/>} />
