@@ -4,15 +4,19 @@ import TableAdmin from '../../components/admin/Table/TableAdmin'
 import { useDispatch } from 'react-redux'
 import { setDataAnak } from '../../redux/actions/actions'
 import SourceStuntingAPI from '../../api/resource/SourceStunting'
+import jwtDecode from 'jwt-decode'
 
 const DataAnak = () => {
   const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
 
-  const dataAnak = async () => {
+  const token = localStorage.getItem('token')
+  const { company } = jwtDecode(token)
+
+  const dataAnak = async (company) => {
     try {
-      const response = await SourceStuntingAPI.getDataAnak(currentPage)
+      const response = await SourceStuntingAPI.getDataAnak(company, currentPage)
       dispatch(setDataAnak(response.data))
       setTotalPages(response.totalPages)
     } catch (error) {
@@ -21,8 +25,8 @@ const DataAnak = () => {
   }
 
   useEffect(() => {
-    dataAnak()
-  }, [dispatch, currentPage])
+    dataAnak(company)
+  }, [company, dispatch, currentPage])
 
   return (
     <Layout>

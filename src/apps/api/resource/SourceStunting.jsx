@@ -8,8 +8,8 @@ const {
 } = API_ENDPOINT
 
 class SourceStuntingAPI {
-  static async getDataAnak (page) {
-    const response = await axios.get(GET_DATA_ANAK_PAGINATE(page))
+  static async getDataAnak (guid, page) {
+    const response = await axios.get(GET_DATA_ANAK_PAGINATE(guid, page))
     return response.data
   }
 
