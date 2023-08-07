@@ -21,7 +21,6 @@ const DashboardAdmin = () => {
 
   const token = localStorage.getItem('token')
   const { company } = jwtDecode(token)
-  console.log(company)
 
   const dataMaps = async (guidCompany) => {
     try {
