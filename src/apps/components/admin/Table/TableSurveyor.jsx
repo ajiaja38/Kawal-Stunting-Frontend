@@ -94,7 +94,7 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                     <Link to={`/data-surveyor/process/${data.GUID_REPORT}/${data.GUID_RESULT}/${data.NAME}`}>
                       <button
                         disabled={!!data.PROCESS}
-                        className=' text-white rounded-md bg-main hover:bg-secondary active:bg-main p-2 transition-all ease-linear duration-100'
+                        className={`text-white rounded-md ${data.PROCESS ? 'bg-gray-300' : 'bg-main hover:bg-secondary active:bg-main'} p-2 transition-all ease-linear duration-100`}
                       >
                         Proses
                       </button>
