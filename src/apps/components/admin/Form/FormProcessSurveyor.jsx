@@ -11,11 +11,15 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
   const [NAME, setNAME] = useState(null)
   const [FATHER_NAME, setFatherName] = useState(null)
   const [MOTHER_NAME, setMotherName] = useState(null)
+  const [PROFILE_PHOTO, setProfileFoto] = useState(null)
   const [ADDRESS, setAddress] = useState(null)
+  const [WARD, setWard] = useState(null)
+  const [SUBDISTRICT, setSubDistrict] = useState(null)
+  const [REGENCY, setRegency] = useState(null)
+  const [PROVINCE, setProvince] = useState(null)
   const [DATE_BIRTH, setDateBirth] = useState(null)
   const [KK, setKK] = useState(null)
   const [NIK, setNIK] = useState(null)
-  const [EDUCATION, setEducation] = useState(null)
   const [POSYANDU, setPosyandu] = useState(null)
   const [AGE, setAge] = useState(null)
   const [WEIGHT, setWeight] = useState(null)
@@ -23,17 +27,20 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
   const [HEIGHT, setHeight] = useState(null)
   const [BORN_HEIGHT, setBornHeight] = useState(null)
   const [STUNTING, setStunting] = useState(false)
-  const [STATUS, setStatus] = useState(false)
 
   useEffect(() => {
     setNAME(child.NAME)
     setFatherName(child.FATHER_NAME)
     setMotherName(child.MOTHER_NAME)
+    setProfileFoto(child.PROFILE_PHOTO)
     setAddress(child.ADDRESS)
+    setWard(child.WARD)
+    setSubDistrict(child.SUBDISTRICT)
+    setRegency(child.REGENCY)
+    setProvince(child.PROVINCE)
     setDateBirth(child.DATE_BIRTH)
     setKK(child.KK)
     setNIK(child.NIK)
-    setEducation(child.EDUCATION)
     setPosyandu(child.POSYANDU)
     setAge(child.AGE)
     setWeight(child.WEIGHT)
@@ -41,8 +48,7 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
     setHeight(child.HEIGHT)
     setBornHeight(child.BORN_HEIGHT)
     setStunting(child.STUNTING)
-    setStatus(child.STATUS)
-    console.log(child._id)
+    console.log(child)
   }, [child])
 
   const handleProcess = async (e) => {
@@ -55,13 +61,16 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         KK,
         NIK,
         NAME,
-        STATUS,
         DATE_BIRTH,
         FATHER_NAME,
         MOTHER_NAME,
-        EDUCATION,
+        PROVINCE,
+        REGENCY,
+        SUBDISTRICT,
+        WARD,
         ADDRESS,
         POSYANDU,
+        PROFILE_PHOTO,
         AGE,
         BIRTH_WEIGHT,
         BORN_HEIGHT,
@@ -88,9 +97,18 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         onSubmit={handleProcess}
         className='w-[30rem] border rounded-lg shadow-lg p-7 mb-7 grid grid-cols-1 gap-7'>
         <div className='flex flex-col gap-1'>
-          <label>Nama Lengkap</label>
+          <label>Foto Profil Anak</label>
+          <img
+            src={`https://absensi-selfie.pptik.id/data/kehadiran/image/${child.PROFILE_PHOTO}`}
+            className='w-40 h-44 object-cover object-center border rounded-lg'
+            alt='profile anak'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label>Nama Lengkap Anak</label>
           <input
-            value={NAME || ''}
+            value={NAME}
             onChange={(e) => setNAME(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -101,7 +119,7 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         <div className='flex flex-col gap-1'>
           <label>Nama Ayah</label>
           <input
-            value={FATHER_NAME || ''}
+            value={FATHER_NAME}
             onChange={(e) => setFatherName(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -112,7 +130,7 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         <div className='flex flex-col gap-1'>
           <label>Nama Ibu</label>
           <input
-            value={MOTHER_NAME || ''}
+            value={MOTHER_NAME}
             onChange={(e) => setMotherName(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -121,9 +139,20 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
+          <label>Foto Anak</label>
+          <input
+            value={PROFILE_PHOTO}
+            onChange={(e) => setProfileFoto(e.target.value)}
+            type='text'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Gambar Anak'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
           <label>Alamat</label>
           <input
-            value={ADDRESS || ''}
+            value={ADDRESS}
             onChange={(e) => setAddress(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -132,9 +161,53 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
+          <label>Desa</label>
+          <input
+            value={WARD}
+            onChange={(e) => setWard(e.target.value)}
+            type='text'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Kecamatan'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label>Kecamatan</label>
+          <input
+            value={SUBDISTRICT}
+            onChange={(e) => setSubDistrict(e.target.value)}
+            type='text'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Kecamatan'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label>Kabupaten</label>
+          <input
+            value={REGENCY}
+            onChange={(e) => setRegency(e.target.value)}
+            type='text'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Kabupaten'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label>Provinsi</label>
+          <input
+            value={PROVINCE}
+            onChange={(e) => setProvince(e.target.value)}
+            type='text'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Provinsi'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
           <label>Tanggal Lahir</label>
           <input
-            value={DATE_BIRTH || ''}
+            value={DATE_BIRTH}
             onChange={(e) => setDateBirth(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2'
@@ -143,20 +216,9 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Status</label>
-          <input
-            value={STATUS || ''}
-            onChange={(e) => setStatus(e.target.value)}
-            type='text'
-            className='outline-none border-b-2 border-black p-2'
-            placeholder='Masukkan Status'
-          />
-        </div>
-
-        <div className='flex flex-col gap-1'>
           <label>Umur</label>
           <input
-            value={AGE || ''}
+            value={AGE}
             onChange={(e) => setAge(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -167,7 +229,7 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         <div className='flex flex-col gap-1'>
           <label>Kartu Keluarga</label>
           <input
-            value={KK || ''}
+            value={KK}
             onChange={(e) => setKK(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2'
@@ -178,7 +240,7 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         <div className='flex flex-col gap-1'>
           <label>NIK</label>
           <input
-            value={NIK || ''}
+            value={NIK}
             onChange={(e) => setNIK(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2'
@@ -187,20 +249,9 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Pendidikan</label>
-          <input
-            value={EDUCATION || ''}
-            onChange={(e) => setEducation(e.target.value)}
-            type='text'
-            className='outline-none border-b-2 border-black p-2 mb-3'
-            placeholder='Masukkan Pendidikan Anak'
-          />
-        </div>
-
-        <div className='flex flex-col gap-1'>
           <label>Posyandu</label>
           <input
-            value={POSYANDU || ''}
+            value={POSYANDU}
             onChange={(e) => setPosyandu(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -209,9 +260,9 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Berat Badan</label>
+          <label>Berat Badan (Kg)</label>
           <input
-            value={`${WEIGHT || 0} Kg`}
+            value={WEIGHT}
             onChange={(e) => setWeight(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -220,9 +271,9 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Berat Badan Saat Lahir</label>
+          <label>Berat Badan Saat Lahir (Kg)</label>
           <input
-            value={`${BIRTH_WEIGHT || ''} Kg`}
+            value={BIRTH_WEIGHT}
             onChange={(e) => setBirthWeight(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -231,9 +282,9 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Tinggi Badan</label>
+          <label>Tinggi Badan (cm)</label>
           <input
-            value={`${HEIGHT || 0} Cm`}
+            value={HEIGHT}
             onChange={(e) => setHeight(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
@@ -242,13 +293,31 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Tinggi Badan Saat Lahir</label>
+          <label>Tinggi Badan Saat Lahir (cm)</label>
           <input
-            value={`${BORN_HEIGHT || 0} Cm`}
-            onChange={(e) => setHeight(e.target.value)}
+            value={BORN_HEIGHT}
+            onChange={(e) => setBornHeight(e.target.value)}
             type='text'
             className='outline-none border-b-2 border-black p-2 mb-3'
             placeholder='Masukkan Tinggi Badan Anak Saat Lahir'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label>Lingkar Kepala (Cm)</label>
+          <input
+            type='text'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Lingkar Kepala anak'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label>Suhu Tubuh ({<spa>&#8451;</spa>})</label>
+          <input
+            type='text'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Suhu Tubuh Anak'
           />
         </div>
 

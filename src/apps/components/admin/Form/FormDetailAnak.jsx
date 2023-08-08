@@ -6,10 +6,13 @@ const FormDetailAnak = ({ guid }) => {
   const [namaLengkap, setNamaLengkap] = useState('')
   const [namaAyah, setNamaAyah] = useState('')
   const [namaIbu, setNamaIbu] = useState('')
-  const [alamat, setAlamat] = useState('')
   const [gender, setGender] = useState('')
   const [tanggalLahir, setTanggalLahir] = useState('')
   const [fotoAnak, setFotoAnak] = useState('')
+  const [desa, setDesa] = useState('')
+  const [kecamatan, setKecamatan] = useState('')
+  const [kabupaten, setKabupaten] = useState('')
+  const [provinsi, setProvinsi] = useState('')
 
   const getDataAnakByGuid = async () => {
     try {
@@ -18,10 +21,13 @@ const FormDetailAnak = ({ guid }) => {
       setNamaLengkap(response[0].NAME)
       setNamaAyah(response[0].FATHER_NAME)
       setNamaIbu(response[0].MOTHER_NAME)
-      setAlamat(response[0].ADDRESS)
       setGender(response[0].GENDER)
       setTanggalLahir(response[0].DATE_BIRTH)
       setFotoAnak(response[0].PROFILE_PHOTO)
+      setDesa(response[0].WARD)
+      setKecamatan(response[0].SUBDISTRICT)
+      setKabupaten(response[0].REGENCY)
+      setProvinsi(response[0].PROVINCE)
     } catch (error) {
       console.log(error.response.data.message)
     }
@@ -73,7 +79,7 @@ const FormDetailAnak = ({ guid }) => {
           <label className='font-bold'>Alamat</label>
           <input
             type='text'
-            value={alamat}
+            value={`Desa ${desa}, Kec.${kecamatan}, ${kabupaten}, PROV.${provinsi}`}
             className='border-black border-b py-2 w-96 outline-none'
           />
         </div>
@@ -100,13 +106,13 @@ const FormDetailAnak = ({ guid }) => {
           />
         </div>
 
-        <button
+        {/* <button
           className='p-2 text-white rounded-md bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-500 transition-all ease-in-out duration-100'
         >
           Edit
-        </button>
+        </button> */}
       </form>
-      <div className='flex flex-col justify-center items-center gap-2'>
+      <div className='flex flex-col justify-start items-center gap-2'>
         <label className='font-bold'>Foto Anak</label>
         <img
           src={`http://absensi-selfie.pptik.id/data/kehadiran/image/${fotoAnak}`}

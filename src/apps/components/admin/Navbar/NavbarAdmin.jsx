@@ -2,8 +2,13 @@ import React from 'react'
 import logo from '../../../../assets/image/Kawal-stunting-favicon.png'
 import ButtonProfile from './ButtonProfile'
 import { NavLink } from 'react-router-dom'
+import jwtDecode from 'jwt-decode'
+import { CompanyGuid } from '../../../api/resource/GuidCompany'
 
 const NavbarAdmin = () => {
+  const { company } = jwtDecode(localStorage.getItem('token'))
+  const { itg } = CompanyGuid
+
   return (
     <div className='bg-white py-4 px-16 shadow-md sticky top-0 flex justify-between items-center text-sm z-[9999999]'>
       <div className='flex justify-center items-center gap-7'>
@@ -33,7 +38,12 @@ const NavbarAdmin = () => {
 
       </div>
 
+      <div className='flex items-center gap-3'>
+      <h1 className='font-bold'>
+        {company === itg ? 'KKN ITG GARUT' : 'PT.PKN'}
+      </h1>
       <ButtonProfile/>
+      </div>
     </div>
   )
 }

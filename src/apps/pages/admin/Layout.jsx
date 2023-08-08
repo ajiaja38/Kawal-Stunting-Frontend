@@ -7,10 +7,7 @@ const Layout = ({ children }) => {
     <>
       <NavbarAdmin/>
       <div className='flex flex-col justify-center items-center overflow-hidden'>
-        <main className='w-full md:w-[79rem] mt-10'>
-          {/* <div className='mb-5'>
-            <h1>Stunting {'>'} Desa Sukabanjar</h1>
-          </div> */}
+        <main className='w-full md:w-[70rem] mt-10'>
           { children }
         </main>
       </div>

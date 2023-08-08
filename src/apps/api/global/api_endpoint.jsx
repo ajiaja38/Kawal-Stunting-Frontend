@@ -7,7 +7,7 @@ const API_ENDPOINT = {
   GET_DATA_ANAK_PAGINATE: (guid, page) => `${BASE_URL}/population/${guid}/${page}/7`,
   GET_DATA_ANAK_BY_GUID: (guid) => `${BASE_URL}/population/guid/${guid}/1/10`,
   GET_MAPS: (guid) => `${BASE_URL}/population/maps/${guid}`,
-  GET_ALL_DATA_SURVEYOR: `${BASE_URL}/report/all-survey`,
+  GET_ALL_DATA_SURVEYOR: `${BASE_URL}/report/company`,
   GET_DATA_ANAK_AND_SURVEYOR: `${BASE_URL}/population/process`,
   PROCESS_DATA_ANAK_AND_SURVEYOR: `${BASE_URL}/population/process-survey`,
   GET_PROVINSI: `${BASE_URL_REGION}/provinsi`,

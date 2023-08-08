@@ -40,6 +40,11 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
               <th
                 className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
               >
+                Tipe Laporan
+              </th>
+              <th
+                className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
+              >
                 Deskripsi
               </th>
               <th
@@ -70,6 +75,7 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">{index + 1 + (currentPage - 1) * 10}.</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.SURVEYOR}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.NAME}</td>
+                  <td className="whitespace-normal px-4 py-2 text-gray-700">{data.REPORT_TYPES}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.DESCRIPTION}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">
                     <img
@@ -77,11 +83,11 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                       className='w-20 h-14 object-center object-cover'
                     />
                   </td>
-                  <td className="whitespace-normal text-center px-4 py-2 text-gray-700">
+                  <td className="whitespace-normal text-sm text-center px-4 py-2 text-gray-700">
                     {
                       data.PROCESS
-                        ? (<p className='bg-green-300 p-1 inline-block rounded-full'>Sudah Di Proses</p>)
-                        : (<p className='bg-red-200 p-1 inline-block rounded-full'>Belum Di Proses</p>)
+                        ? (<p className='bg-green-300 w-32 p-1 inline-block rounded-full'>Sudah Di Proses</p>)
+                        : (<p className='bg-red-200 w-32 p-1 inline-block rounded-full'>Belum Di Proses</p>)
                     }
                   </td>
                   <td className="whitespace-normal text-center px-4 py-2 text-gray-700">

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import ButtonAddData from './ButtonAddData'
+// import ButtonAddData from './ButtonAddData'
 import { Link } from 'react-router-dom'
 import Pagination from './Pagination'
 import { useSelector } from 'react-redux'
@@ -11,9 +11,9 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
   return (
     <div className='w-full'>
 
-      <div className='text-right mb-2'>
+      {/* <div className='text-right mb-2'>
         <ButtonAddData/>
-      </div>
+      </div> */}
 
       <div className='
         bg-gray-50
@@ -80,11 +80,11 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
                         Detail
                       </button>
                     </Link>
-                    <button
+                    {/* <button
                       className="inline-block rounded transition-all ease-in-out bg-red-500 hover:bg-red-200 active:bg-red-500 px-4 py-2 text-xs font-medium text-white"
                     >
                       Hapus
-                    </button>
+                    </button> */}
                   </td>
                 </tr>
               ))
