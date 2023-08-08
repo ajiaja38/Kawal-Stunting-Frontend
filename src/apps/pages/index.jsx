@@ -10,6 +10,7 @@ import DataSurveyor from './admin/DataSurveyor'
 import DataAnak from './admin/DataAnak'
 import AddDataAnak from './admin/AddDataAnak'
 import ProcessDataSurvey from './admin/ProcessDataSurvey'
+import GraphicPages from './admin/GraphicPages'
 
 // error
 import NotAuthenticatedPage from './common/NotAuthenticatedPage'
@@ -26,6 +27,7 @@ export {
   DataAnak,
   AddDataAnak,
   ProcessDataSurvey,
+  GraphicPages,
 
   // error
   NotAuthenticatedPage

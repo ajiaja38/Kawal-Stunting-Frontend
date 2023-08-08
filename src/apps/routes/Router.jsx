@@ -15,7 +15,8 @@ import {
   DataSurveyor,
   DataAnak,
   AddDataAnak,
-  ProcessDataSurvey
+  ProcessDataSurvey,
+  GraphicPages
 } from '../pages'
 import RequireAuth from './utils/RequireAuth'
 
@@ -35,6 +36,8 @@ const Router = () => {
 
           <Route path='/data-surveyor' element={<DataSurveyor/>} />
           <Route path='/data-surveyor/process/:guidReport/:guidResult/:name' element={<ProcessDataSurvey/>}/>
+
+          <Route path='/grafik' element={<GraphicPages/>} />
 
           <Route path='/posyandu' element={<Posyandu/>} />
           <Route path='/kartu-posyandu' element={<KartuPosyandu/>} />

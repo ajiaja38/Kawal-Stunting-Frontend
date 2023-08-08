@@ -11,8 +11,8 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
     <div className='w-full'>
 
       <div className='
-        bg-gray-100
-        shadow-sm
+        bg-gray-50
+        shadow-lg
         border
         rounded-lg
         p-3

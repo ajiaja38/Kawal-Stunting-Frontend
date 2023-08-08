@@ -27,6 +27,10 @@ const NavbarAdmin = () => {
           <h2>Data Survey</h2>
         </NavLink>
 
+        <NavLink to='/grafik' className='navbar p-1'>
+          <h2>Grafik</h2>
+        </NavLink>
+
       </div>
 
       <ButtonProfile/>

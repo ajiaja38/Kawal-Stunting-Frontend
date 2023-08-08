@@ -16,8 +16,8 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
       </div>
 
       <div className='
-        bg-gray-100
-        shadow-sm
+        bg-gray-50
+        shadow-lg
         border
         rounded-lg
         p-3
