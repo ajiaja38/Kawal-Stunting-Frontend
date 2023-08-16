@@ -76,7 +76,7 @@ const FormDetailAnak = ({ guid }) => {
         <div
           className='flex flex-col gap-1 w-full'
         >
-          <label className='font-bold'>Alamat</label>
+          <label className='font-bold'>Lokasi</label>
           <input
             type='text'
             value={`Desa ${desa}, Kec.${kecamatan}, ${kabupaten}, PROV.${provinsi}`}

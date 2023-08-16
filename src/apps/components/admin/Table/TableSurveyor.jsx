@@ -7,6 +7,18 @@ import { Link } from 'react-router-dom'
 const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
   const { dataSurvey } = useSelector((state) => state.data)
 
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp * 1000)
+    const day = date.getDate()
+    const monthNames = [
+      'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+      'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ]
+    const month = monthNames[date.getMonth()]
+    const year = date.getFullYear()
+    return `${day} ${month} ${year}`
+  }
+
   return (
     <div className='w-full'>
 
@@ -50,6 +62,11 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
               <th
                 className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
               >
+                Tanggal
+              </th>
+              <th
+                className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
+              >
                 Foto
               </th>
               <th
@@ -77,10 +94,11 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.NAME}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.REPORT_TYPES}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.DESCRIPTION}</td>
+                  <td className="whitespace-normal px-4 py-2 text-gray-700">{formatDate(data.TIMESTAMP)}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">
                     <img
                       src={`https://absensi-selfie.pptik.id/${data.IMAGE}`}
-                      className='w-20 h-14 object-center object-cover'
+                      className='w-24 h-14 object-center object-cover'
                     />
                   </td>
                   <td className="whitespace-normal text-sm text-center px-4 py-2 text-gray-700">
@@ -91,14 +109,21 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                     }
                   </td>
                   <td className="whitespace-normal text-center px-4 py-2 text-gray-700">
-                    <Link to={`/data-surveyor/process/${data.GUID_REPORT}/${data.GUID_RESULT}/${data.NAME}`}>
+                    <div className='flex gap-2'>
+                      <Link to={`/data-surveyor/process/${data.GUID_REPORT}/${data.GUID_RESULT}/${data.NAME}`}>
+                        <button
+                          disabled={!!data.PROCESS}
+                          className={`text-white rounded-md ${data.PROCESS ? 'bg-gray-300' : 'bg-main hover:bg-secondary active:bg-main'} p-2 transition-all ease-linear duration-100`}
+                        >
+                          Proses
+                        </button>
+                      </Link>
                       <button
-                        disabled={!!data.PROCESS}
-                        className={`text-white rounded-md ${data.PROCESS ? 'bg-gray-300' : 'bg-main hover:bg-secondary active:bg-main'} p-2 transition-all ease-linear duration-100`}
+                        className="inline-block rounded-md transition-all ease-in-out bg-red-500 hover:bg-red-200 active:bg-red-500 px-4 py-2 text-xs font-medium text-white"
                       >
-                        Proses
+                        Hapus
                       </button>
-                    </Link>
+                    </div>
                   </td>
                 </tr>
               ))

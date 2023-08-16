@@ -9,6 +9,7 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
   const navigate = useNavigate()
 
   const [NAME, setNAME] = useState(null)
+  const [GENDER, setGender] = useState(null)
   const [FATHER_NAME, setFatherName] = useState(null)
   const [MOTHER_NAME, setMotherName] = useState(null)
   const [PROFILE_PHOTO, setProfileFoto] = useState(null)
@@ -26,10 +27,10 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
   const [BIRTH_WEIGHT, setBirthWeight] = useState(null)
   const [HEIGHT, setHeight] = useState(null)
   const [BORN_HEIGHT, setBornHeight] = useState(null)
-  const [STUNTING, setStunting] = useState(false)
 
   useEffect(() => {
     setNAME(child.NAME)
+    setGender(child.GENDER)
     setFatherName(child.FATHER_NAME)
     setMotherName(child.MOTHER_NAME)
     setProfileFoto(child.PROFILE_PHOTO)
@@ -47,7 +48,6 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
     setBirthWeight(child.BIRTH_WEIGHT)
     setHeight(child.HEIGHT)
     setBornHeight(child.BORN_HEIGHT)
-    setStunting(child.STUNTING)
     console.log(child)
   }, [child])
 
@@ -61,6 +61,7 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         KK,
         NIK,
         NAME,
+        GENDER,
         DATE_BIRTH,
         FATHER_NAME,
         MOTHER_NAME,
@@ -75,13 +76,12 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         BIRTH_WEIGHT,
         BORN_HEIGHT,
         HEIGHT,
-        WEIGHT,
-        STUNTING
+        WEIGHT
       }
-      const response = await SourceSurveyor.processDataAnak(data)
-      console.log(response)
+      await SourceSurveyor.processDataAnak(data)
       navigate('/data-surveyor')
     } catch (error) {
+      console.log(error)
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -205,24 +205,24 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Tanggal Lahir</label>
+          <label>Jenis Kelamin</label>
           <input
-            value={DATE_BIRTH}
-            onChange={(e) => setDateBirth(e.target.value)}
+            value={GENDER}
+            onChange={(e) => setGender(e.target.value)}
             type='text'
-            className='outline-none border-b-2 border-black p-2'
-            placeholder='Masukkan Tanggal Lahir Anak'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Provinsi'
           />
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Umur</label>
+          <label>Tanggal Lahir</label>
           <input
-            value={AGE}
-            onChange={(e) => setAge(e.target.value)}
-            type='text'
-            className='outline-none border-b-2 border-black p-2 mb-3'
-            placeholder='Masukkan Umur Anak'
+            value={DATE_BIRTH}
+            onChange={(e) => setDateBirth(e.target.value)}
+            type='date'
+            className='outline-none border-b-2 border-black p-2'
+            placeholder='Masukkan Tanggal Lahir Anak'
           />
         </div>
 
@@ -260,7 +260,18 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Berat Badan (Kg)</label>
+          <label>Umur Saat Survey</label>
+          <input
+            value={AGE}
+            onChange={(e) => setAge(e.target.value)}
+            type='text'
+            className='outline-none border-b-2 border-black p-2 mb-3'
+            placeholder='Masukkan Umur Anak'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label>Berat Badan Saat Survey (Kg)</label>
           <input
             value={WEIGHT}
             onChange={(e) => setWeight(e.target.value)}
@@ -282,7 +293,7 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
         </div>
 
         <div className='flex flex-col gap-1'>
-          <label>Tinggi Badan (cm)</label>
+          <label>Tinggi Badan Saat Survey (cm)</label>
           <input
             value={HEIGHT}
             onChange={(e) => setHeight(e.target.value)}
@@ -321,21 +332,8 @@ const FormProcessSurveyor = ({ child, guidReport }) => {
           />
         </div>
 
-        <div className='flex flex-col gap-1'>
-          <label>Stunting</label>
-          <select
-            value={STUNTING || false}
-            onChange={(e) => setStunting(e.target.value)}
-            className='outline-none border-b-2 border-black p-2'
-          >
-            <option readOnly>Pilih Kondisi</option>
-            <option value={true}>Iya</option>
-            <option value={false}>Tidak</option>
-          </select>
-        </div>
-
         <div>
-          <button className='bg-main hover:bg-secondary active:bg-main transition-all ease-in-out duration-100 p-2 rounded-md text-white w-full mt-10'>
+          <button className='bg-main hover:bg-secondary active:bg-main transition-all ease-in-out duration-100 p-2 rounded-md text-white w-full'>
             Proses
           </button>
         </div>

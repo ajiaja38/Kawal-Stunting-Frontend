@@ -2,7 +2,6 @@
 import React from 'react'
 
 const CardDataSurveyor = ({ surveyor }) => {
-  console.log(surveyor)
   return (
     <div className='w-full'>
       <h1 className='text-center mb-5 font-bold text-lg'>Data Survey</h1>
@@ -56,9 +55,9 @@ const CardDataSurveyor = ({ surveyor }) => {
           </div>
 
           <div className='flex flex-col'>
-            <label>Alamat</label>
+            <label>Kabupaten</label>
             <input
-              value={surveyor.ADDRESS}
+              value={surveyor.DISTRICT}
               type='text'
               className='outline-none border-b-2 border-black p-2 mb-3 bg-white'
               placeholder='Masukkan Nama Lengkap Anak'
@@ -76,9 +75,9 @@ const CardDataSurveyor = ({ surveyor }) => {
           </div>
 
           <div className='flex flex-col'>
-            <label>Kabupaten</label>
+            <label>Lokasi Survey</label>
             <input
-              value={surveyor.DISTRICT}
+              value={surveyor.ADDRESS}
               type='text'
               className='outline-none border-b-2 border-black p-2 mb-3 bg-white'
               placeholder='Masukkan Nama Lengkap Anak'

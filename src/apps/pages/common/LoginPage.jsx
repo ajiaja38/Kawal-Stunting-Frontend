@@ -43,7 +43,7 @@ const LoginPage = () => {
 
       <div className='w-full h-full flex justify-center items-center'>
         <div className='w-[33rem] p-2'>
-          <header className='w-[19rem] flex justify-center items-center gap-1 mb-6'>
+          <header className='w-[27rem] flex justify-center items-center gap-1 mb-6'>
             <h1 className='text-main text-xl font-bold text-right'>Kawal Stunting</h1>
             <img
               src={logo}
@@ -51,7 +51,7 @@ const LoginPage = () => {
             />
             <img
               src={logoMerge}
-              className='w-40'
+              className='w-72'
             />
           </header>
           <main className='p-2 grid grid-cols-1 gap-4'>
