@@ -9,16 +9,22 @@ import jwtDecode from 'jwt-decode'
 const DataAnak = () => {
   const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(0)
+  // const [totalPages, setTotalPages] = useState(0)
 
   const token = localStorage.getItem('token')
   const { company } = jwtDecode(token)
 
   const dataAnak = async (company) => {
     try {
-      const response = await SourceStuntingAPI.getDataAnak(company, currentPage)
+      const data = {
+        company,
+        page: currentPage,
+        limit: 5
+      }
+      const response = await SourceStuntingAPI.getDataAnakHasilSurvey(data)
+      console.log(response)
       dispatch(setDataAnak(response.data))
-      setTotalPages(response.totalPages)
+      // setTotalPages(response.totalPages)
     } catch (error) {
       console.log(error.response.data.message)
     }
@@ -31,7 +37,7 @@ const DataAnak = () => {
   return (
     <Layout>
       <TableAdmin
-        totalPages={totalPages}
+        // totalPages={totalPages}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />

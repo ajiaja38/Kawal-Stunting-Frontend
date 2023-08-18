@@ -2,14 +2,14 @@
 import React from 'react'
 // import ButtonAddData from './ButtonAddData'
 import { Link } from 'react-router-dom'
-import Pagination from './Pagination'
+// import Pagination from './Pagination'
 import { useSelector } from 'react-redux'
 
 const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
   const { dataAnak } = useSelector((state) => state.data)
 
   return (
-    <div className='w-full'>
+    <div className='w-full mb-10'>
 
       {/* <div className='text-right mb-2'>
         <ButtonAddData/>
@@ -67,11 +67,11 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
                   key={index}
                   className='hover:bg-white transition-all ease-in-out'
                 >
-                  <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">{index + 1 + (currentPage - 1) * 5}</td>
+                  <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">{index + 1}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.NAME}</td>
-                  <td className="whitespace-normal px-4 py-2 text-gray-700">{data.DATE_BIRTH}</td>
-                  <td className="whitespace-normal px-4 py-2 text-gray-700">{data.FATHER_NAME}</td>
-                  <td className="whitespace-normal px-4 py-2 text-gray-700">{data.ADDRESS}</td>
+                  <td className="whitespace-normal px-4 py-2 text-gray-700">-</td>
+                  <td className="whitespace-normal px-4 py-2 text-gray-700">-</td>
+                  <td className="whitespace-normal px-4 py-2 text-gray-700">-</td>
                   <td className="whitespace-nowrap px-4 py-2 text-center flex justify-center items-center gap-2">
                     <Link to={`/data-anak/${data.GUID}`}>
                       <button
@@ -92,11 +92,11 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
           </tbody>
         </table>
       </div>
-      <Pagination
+      {/* <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-      />
+      /> */}
     </div>
   )
 }

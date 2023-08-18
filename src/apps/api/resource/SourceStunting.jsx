@@ -3,6 +3,7 @@ import API_ENDPOINT from '../global/api_endpoint'
 
 const {
   GET_DATA_ANAK_PAGINATE,
+  GET_DATA_ANAK_PAGINATE_SURVEYED,
   GET_DATA_ANAK_BY_GUID,
   GET_MAPS
 } = API_ENDPOINT
@@ -10,6 +11,11 @@ const {
 class SourceStuntingAPI {
   static async getDataAnak (guid, page) {
     const response = await axios.get(GET_DATA_ANAK_PAGINATE(guid, page))
+    return response.data
+  }
+
+  static async getDataAnakHasilSurvey (data) {
+    const response = await axios.post(GET_DATA_ANAK_PAGINATE_SURVEYED, data)
     return response.data
   }
 

@@ -5,6 +5,7 @@ const { BASE_URL, BASE_URL_REGION } = CONFIG
 const API_ENDPOINT = {
   LOGIN: `${BASE_URL}/admin/login`,
   GET_DATA_ANAK_PAGINATE: (guid, page) => `${BASE_URL}/population/${guid}/${page}/7`,
+  GET_DATA_ANAK_PAGINATE_SURVEYED: `${BASE_URL}/population/all`,
   GET_DATA_ANAK_BY_GUID: (guid) => `${BASE_URL}/population/guid/${guid}/1/10`,
   GET_MAPS: (guid) => `${BASE_URL}/population/maps/${guid}`,
   GET_ALL_DATA_SURVEYOR: `${BASE_URL}/report/company`,
