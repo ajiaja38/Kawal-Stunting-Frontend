@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-// import ButtonAddData from './ButtonAddData'
+import ButtonAddData from './utils/ButtonAddData'
 import { Link } from 'react-router-dom'
 // import Pagination from './Pagination'
 import { useSelector } from 'react-redux'
+import SearchForm from '../Form/SearchForm'
+import ButtonFilter from './utils/ButtonFilter'
 
 const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
   const { dataAnak } = useSelector((state) => state.data)
@@ -11,9 +13,11 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
   return (
     <div className='w-full mb-10'>
 
-      {/* <div className='text-right mb-2'>
+      <div className='text-right mb-2 flex gap-2 justify-end'>
+        <SearchForm/>
+        <ButtonFilter/>
         <ButtonAddData/>
-      </div> */}
+      </div>
 
       <div className='
         bg-gray-50
@@ -35,7 +39,12 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
               <th
                 className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
               >
-                Nama Lengkap
+                Foto
+              </th>
+              <th
+                className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
+              >
+                Nama Anak
               </th>
               <th
                 className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
@@ -45,12 +54,12 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
               <th
                 className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
               >
-                Nama Ayah
+                Nama Ibu
               </th>
               <th
                 className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
               >
-                Alamat
+                Lokasi
               </th>
               <th
                 className="whitespace-nowrap px-4 py-2 text-center font-semibold text-gray-900"
@@ -68,23 +77,32 @@ const TableAdmin = ({ totalPages, currentPage, setCurrentPage }) => {
                   className='hover:bg-white transition-all ease-in-out'
                 >
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">{index + 1}</td>
+                  <td className="whitespace-normal px-4 py-2 text-gray-700">
+                    <img
+                      src='http://absensi-selfie.pptik.id/data/kehadiran/image/SURVEYOR-1e9108da-a458-4f29-b7a2-bf37c88fc4cf1691808160-PPTIK.png'
+                      alt='foto anak'
+                      className='rounded-full w-14 h-14 object-cover object-center shadow-sm'
+                    />
+                  </td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.NAME}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">-</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">-</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">-</td>
-                  <td className="whitespace-nowrap px-4 py-2 text-center flex justify-center items-center gap-2">
-                    <Link to={`/data-anak/${data.GUID}`}>
+                  <td className="whitespace-nowrap px-4 py-2 text-center">
+                    <div className='flex gap-2 justify-center items-center'>
+                      <Link to={`/data-anak/${data.GUID}`}>
+                        <button
+                          className="inline-block rounded transition-all ease-in-out bg-main hover:bg-secondary active:bg-main px-4 py-2 text-xs font-medium text-white"
+                        >
+                          Detail
+                        </button>
+                      </Link>
                       <button
-                        className="inline-block rounded transition-all ease-in-out bg-main hover:bg-secondary active:bg-main px-4 py-2 text-xs font-medium text-white"
+                        className="inline-block rounded transition-all ease-in-out bg-red-500 hover:bg-red-200 active:bg-red-500 px-4 py-2 text-xs font-medium text-white"
                       >
-                        Detail
+                        Hapus
                       </button>
-                    </Link>
-                    {/* <button
-                      className="inline-block rounded transition-all ease-in-out bg-red-500 hover:bg-red-200 active:bg-red-500 px-4 py-2 text-xs font-medium text-white"
-                    >
-                      Hapus
-                    </button> */}
+                    </div>
                   </td>
                 </tr>
               ))

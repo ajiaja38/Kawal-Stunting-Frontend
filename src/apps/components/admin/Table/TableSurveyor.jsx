@@ -3,6 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Pagination from './Pagination'
 import { Link } from 'react-router-dom'
+import SearchForm from '../Form/SearchForm'
 
 const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
   const { dataSurvey } = useSelector((state) => state.data)
@@ -21,6 +22,10 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
 
   return (
     <div className='w-full'>
+
+      <div className='text-right mb-2 flex gap-2 justify-end'>
+        <SearchForm/>
+      </div>
 
       <div className='
         bg-gray-50
@@ -47,7 +52,7 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
               <th
                 className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
               >
-                Nama
+                Nama Anak
               </th>
               <th
                 className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
@@ -118,11 +123,6 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                           Proses
                         </button>
                       </Link>
-                      <button
-                        className="inline-block rounded-md transition-all ease-in-out bg-red-500 hover:bg-red-200 active:bg-red-500 px-4 py-2 text-xs font-medium text-white"
-                      >
-                        Hapus
-                      </button>
                     </div>
                   </td>
                 </tr>

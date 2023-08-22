@@ -6,7 +6,7 @@ const ButtonAddData = () => {
     <Link to={'/data-anak/add'}>
       <button
         className='
-          p-2 rounded-full
+          p-2 rounded-md
           text-white bg-main hover:bg-secondary active:bg-main
           transition-all ease-in-out duration-150
         '

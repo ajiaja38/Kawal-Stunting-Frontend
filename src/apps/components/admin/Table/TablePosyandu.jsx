@@ -1,6 +1,6 @@
 import React from 'react'
 import Pagination from './Pagination'
-import ButtonAddData from './ButtonAddData'
+import ButtonAddData from './utils/ButtonAddData'
 import posyandu from '../../../api/dataDummyPosyandu'
 import { Link } from 'react-router-dom'
 
