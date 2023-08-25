@@ -16,9 +16,9 @@ const LoginPage = () => {
     e.preventDefault()
     try {
       const data = { email, password }
-      const response = await SourceAuthAPI.login(data)
-      localStorage.setItem('token', response.token)
-      setToken(response.token)
+      const response = await SourceAuthAPI.loginNest(data)
+      localStorage.setItem('token', response)
+      setToken(response)
     } catch (error) {
       console.log(error.response.data.message)
     }

@@ -94,7 +94,7 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
                   key={index}
                   className='hover:bg-white transition-all ease-in-out'
                 >
-                  <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">{index + 1 + (currentPage - 1) * 10}.</td>
+                  <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">{index + 1 + (currentPage - 1) * 30}.</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.SURVEYOR}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.NAME}</td>
                   <td className="whitespace-normal px-4 py-2 text-gray-700">{data.REPORT_TYPES}</td>

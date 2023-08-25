@@ -20,7 +20,7 @@ const DashboardAdmin = () => {
   // const { selectedKecamatan } = useSelector((state) => state.data)
 
   const token = localStorage.getItem('token')
-  const { company } = jwtDecode(token)
+  const { COMPANY_GUID } = jwtDecode(token)
 
   const dataMaps = async (guidCompany) => {
     try {
@@ -68,8 +68,8 @@ const DashboardAdmin = () => {
   // }
 
   useEffect(() => {
-    dataMaps(company)
-  }, [dispatch, company])
+    dataMaps(COMPANY_GUID)
+  }, [dispatch, COMPANY_GUID])
 
   // useEffect(() => {
   //   getProvinsi()

@@ -11,14 +11,14 @@ import { CompanyGuid } from '../../../api/resource/GuidCompany'
 
 const MapsStunting = () => {
   const { maps } = useSelector((state) => state.data)
-  const { company } = jwtDecode(localStorage.getItem('token'))
+  const { COMPANY_GUID } = jwtDecode(localStorage.getItem('token'))
   const { itg } = CompanyGuid
 
   return (
     <div className='w-full h-[29rem] rounded-xl shadow-xl'>
       <MapContainer
         className='w-full h-full rounded-md outline-none z-0'
-        center={company === itg ? [-6.929391, 107.6269033] : [2.723873107469269, 117.54042155791763]}
+        center={COMPANY_GUID === itg ? [-6.929391, 107.6269033] : [2.723873107469269, 117.54042155791763]}
         zoom={9}
         scrollWheelZoom={true}>
         <TileLayer

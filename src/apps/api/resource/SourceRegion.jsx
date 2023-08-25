@@ -1,5 +1,5 @@
 import axios from 'axios'
-import API_ENDPOINT from '../global/api_endpoint'
+import { API_ENDPOINT } from '../global/api_endpoint'
 
 const {
   GET_PROVINSI,

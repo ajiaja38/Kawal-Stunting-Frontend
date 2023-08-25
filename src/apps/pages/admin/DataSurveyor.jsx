@@ -12,17 +12,18 @@ const DataSurveyor = () => {
   const [totalPages, setTotalPages] = useState(0)
 
   const token = localStorage.getItem('token')
-  const { company } = jwtDecode(token)
+  const { COMPANY_GUID } = jwtDecode(token)
 
   const getAllDataSurvey = async () => {
     try {
       const data = {
         page: currentPage,
-        limit: 5,
-        company
+        limit: 30,
+        company: COMPANY_GUID
       }
 
       const response = await SourceSurveyor.getAllDataSurvey(data)
+      console.log(response)
       dispatch(setDataSurvey(response.data))
       setTotalPages(response.totalPages)
     } catch (error) {

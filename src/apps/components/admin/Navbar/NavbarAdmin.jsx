@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode'
 import { CompanyGuid } from '../../../api/resource/GuidCompany'
 
 const NavbarAdmin = () => {
-  const { company } = jwtDecode(localStorage.getItem('token'))
+  const { COMPANY_GUID } = jwtDecode(localStorage.getItem('token'))
   const { itg } = CompanyGuid
 
   return (
@@ -40,7 +40,7 @@ const NavbarAdmin = () => {
 
       <div className='flex items-center gap-3'>
       <h1 className='font-bold'>
-        {company === itg ? 'KKN ITG GARUT' : 'PT.PKN'}
+        {COMPANY_GUID === itg ? 'KKN ITG GARUT' : 'PT.PKN'}
       </h1>
       <ButtonProfile/>
       </div>

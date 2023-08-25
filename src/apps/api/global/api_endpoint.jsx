@@ -1,6 +1,6 @@
 import CONFIG from './config'
 
-const { BASE_URL, BASE_URL_REGION } = CONFIG
+const { BASE_URL, BASE_URL_V2, BASE_URL_REGION } = CONFIG
 
 const API_ENDPOINT = {
   LOGIN: `${BASE_URL}/admin/login`,
@@ -17,4 +17,15 @@ const API_ENDPOINT = {
   GET_KELURAHAN: (kecamatanId) => `${BASE_URL_REGION}/kelurahan?kecamatan_id=${kecamatanId}`
 }
 
-export default API_ENDPOINT
+const API_ENDPOINT_NEST = {
+  GET_ALL_DATA_ANAK_PAGINATE: (search, guid, page) => `${BASE_URL_V2}/anak/paginate/${guid}?search=${search}&page=${page}&limit=30`,
+  DATA_ANAK_BY_GUID: (guid) => `${BASE_URL_V2}/anak/${guid}`,
+  UPLOADER: `${BASE_URL_V2}/uploader`,
+  AUTHENTICATION: `${BASE_URL_V2}/auth/login`,
+  COMPANY: `${BASE_URL_V2}/company`
+}
+
+export {
+  API_ENDPOINT,
+  API_ENDPOINT_NEST
+}
