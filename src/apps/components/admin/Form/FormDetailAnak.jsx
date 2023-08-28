@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import SourceStuntingAPI from '../../../api/resource/SourceStunting'
-import SourceCompany from '../../../api/resource/SourceCompany'
 import Swal from 'sweetalert2'
 import SourceUploader from '../../../api/resource/SourceUploader'
 import { useNavigate } from 'react-router-dom'
@@ -23,7 +22,6 @@ const FormDetailAnak = ({ guid }) => {
   const [tempat_lahir, setTempatLahir] = useState('')
   const [tanggal_lahir, setTanggalLahir] = useState(new Date())
   const [NIK_Anak, setNIKAnak] = useState('')
-  const [company, setCompany] = useState([])
   const [guidCompany, setGuidCompany] = useState('')
 
   const [activeTab, setActiveTab] = useState('detail')
@@ -96,11 +94,6 @@ const FormDetailAnak = ({ guid }) => {
         text: error.response.data.message
       })
     }
-  }
-
-  const getAllCompany = async () => {
-    const response = await SourceCompany.getAllCompany()
-    setCompany(response)
   }
 
   const handleImageAnak = async (e) => {
@@ -293,7 +286,6 @@ const FormDetailAnak = ({ guid }) => {
 
   useEffect(() => {
     getDataAnakByGuid()
-    getAllCompany()
   }, [])
 
   return (
@@ -433,27 +425,7 @@ const FormDetailAnak = ({ guid }) => {
               />
             </div>
 
-            <div
-              className='flex flex-col gap-1 w-full'
-            >
-              <label className='font-bold'>Company</label>
-              <select
-                onChange={(e) => setGuidCompany(e.target.value)}
-                className='border-black border-b outline-none p-2'>
-                <option readOnly>Pilih Company</option>
-                {
-                  company.map((data) => (
-                    <option
-                      key={data.COMPANY_GUID}
-                      value={data.COMPANY_GUID}
-                      selected={data.COMPANY_GUID === guidCompany}
-                    >
-                      {data.COMPANY_NAME}
-                    </option>
-                  ))
-                }
-              </select>
-            </div>
+            <div></div>
 
             <button
               onClick={updateAnak}
