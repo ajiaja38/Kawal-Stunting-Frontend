@@ -21,7 +21,7 @@ const API_ENDPOINT_NEST = {
   GET_ALL_DATA_ANAK_PAGINATE: (search, guid, page) => `${BASE_URL_V2}/anak/paginate/${guid}?search=${search}&page=${page}&limit=30`,
   DATA_ANAK_BY_GUID: (guid) => `${BASE_URL_V2}/anak/${guid}`,
   UPLOADER: `${BASE_URL_V2}/uploader`,
-  AUTHENTICATION: `${BASE_URL_V2}/auth/login`,
+  AUTHENTICATION: `${BASE_URL_V2}/auth/loginAdmin`,
   COMPANY: `${BASE_URL_V2}/company`
 }
 

@@ -4,6 +4,7 @@ import logo from '../../../assets/image/Kawal-stunting-favicon.png'
 import logoMerge from '../../../assets/image/pt_pkn.png'
 import { Link, useNavigate } from 'react-router-dom'
 import SourceAuthAPI from '../../api/resource/SourceAuth'
+import Swal from 'sweetalert2'
 
 const LoginPage = () => {
   const navigate = useNavigate()
@@ -19,7 +20,17 @@ const LoginPage = () => {
       const response = await SourceAuthAPI.loginNest(data)
       localStorage.setItem('token', response)
       setToken(response)
+      Swal.fire(
+        'Sukses!',
+        'Berhasil Login!',
+        'success'
+      )
     } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.response.data.message
+      })
       console.log(error.response.data.message)
     }
   }
