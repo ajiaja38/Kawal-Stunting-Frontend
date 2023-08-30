@@ -39,6 +39,7 @@ const FormDetailAnak = ({ guid }) => {
   const getDataAnakByGuid = async () => {
     try {
       const response = await SourceStuntingAPI.getDataAnakByGuid(guid)
+      console.log(response)
       setNama(response.nama)
       setImage(response.image)
       setJenis_kelamin(response.jenis_kelamin)
@@ -528,7 +529,7 @@ const FormDetailAnak = ({ guid }) => {
 
           <div className='flex flex-col justify-start items-center gap-2'>
             <label className='font-bold'>Foto Ktp Ibu</label>
-            {FILE_KTP_Ayah !== null && FILE_KTP_Ayah !== '' && FILE_KTP_Ayah !== 'N/A' && FILE_KTP_Ayah !== 'profile.png'
+            {FILE_KTP_Ibu !== null && FILE_KTP_Ibu !== '' && FILE_KTP_Ibu !== 'N/A' && FILE_KTP_Ibu !== 'profile.png'
               ? (
                 <img
                   src={FILE_KTP_Ibu}
@@ -569,7 +570,7 @@ const FormDetailAnak = ({ guid }) => {
 
           <div className='flex flex-col justify-start items-center gap-2'>
             <label className='font-bold'>Foto Kartu Keluarga</label>
-            {FILE_KTP_Ayah !== null && FILE_KTP_Ayah !== '' && FILE_KTP_Ayah !== 'N/A' && FILE_KTP_Ayah !== 'profile.png'
+            {FILE_KK !== null && FILE_KK !== '' && FILE_KK !== 'N/A' && FILE_KK !== 'profile.png'
               ? (
                 <img
                   src={FILE_KK}
@@ -610,7 +611,7 @@ const FormDetailAnak = ({ guid }) => {
 
           <div className='flex flex-col justify-start items-center gap-2'>
             <label className='font-bold'>Foto Akta Kelahiran</label>
-            {FILE_KTP_Ayah !== null && FILE_KTP_Ayah !== '' && FILE_KTP_Ayah !== 'N/A' && FILE_KTP_Ayah !== 'profile.png'
+            {FILE_AKTA !== null && FILE_AKTA !== '' && FILE_AKTA !== 'N/A' && FILE_AKTA !== 'profile.png'
               ? (
                 <img
                   src={FILE_AKTA}
