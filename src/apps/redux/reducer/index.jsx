@@ -2,6 +2,7 @@ const initialState = {
   dataAnak: [],
   maps: [],
   dataSurvey: [],
+  dataSurveyByCompany: [],
   selectedProvinsi: null,
   selectedKota: null,
   selectedKecamatan: null,
@@ -24,6 +25,11 @@ const stateReducer = (state = initialState, action) => {
       return {
         ...state,
         dataSurvey: action.payload
+      }
+    case 'SET_DATA_SURVEY_BY_COMPANY':
+      return {
+        ...state,
+        dataSurveyByCompany: action.payload
       }
     case 'SET_PROVINSI':
       return {

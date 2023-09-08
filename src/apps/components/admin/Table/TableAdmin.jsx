@@ -119,8 +119,7 @@ const TableAdmin = ({ setSearch, totalPages = 1, currentPage = 1, setCurrentPage
                     <div className='flex gap-2 justify-center items-center'>
                       <Link to={`/data-anak/${data.guid}`}>
                         <button
-                          disabled={!!data.is_valid}
-                          className={`inline-block rounded transition-all ease-in-out ${data.is_valid ? 'bg-gray-300' : 'bg-main hover:bg-secondary active:bg-main'} px-4 py-2 text-xs font-medium text-white`}
+                          className='inline-block rounded transition-all ease-in-out bg-main hover:bg-secondary active:bg-main  px-4 py-2 text-xs font-medium text-white'
                         >
                           Detail
                         </button>

@@ -2,38 +2,33 @@ import React, { useEffect, useState } from 'react'
 import Layout from './Layout'
 import TableSurveyor from '../../components/admin/Table/TableSurveyor'
 import { useDispatch } from 'react-redux'
-import { setDataSurvey } from '../../redux/actions/actions'
+import { setDataSurveyByCompany } from '../../redux/actions/actions'
 import SourceSurveyor from '../../api/resource/SourceSurvey'
-import jwtDecode from 'jwt-decode'
+import Swal from 'sweetalert2'
 
 const DataSurveyor = () => {
   const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
 
-  const token = localStorage.getItem('token')
-  const { COMPANY_GUID } = jwtDecode(token)
-
-  const getAllDataSurvey = async () => {
+  const getAllDataSurveyByCompany = async () => {
     try {
-      const data = {
-        page: currentPage,
-        limit: 30,
-        company: COMPANY_GUID
-      }
-
-      const response = await SourceSurveyor.getAllDataSurvey(data)
-      console.log(response)
-      dispatch(setDataSurvey(response.data))
+      const response = await SourceSurveyor.getAllDataSurveyPaginate(currentPage)
+      dispatch(setDataSurveyByCompany(response.dataSurvey))
       setTotalPages(response.totalPages)
     } catch (error) {
-      console.log(error.response.data.message)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.response.data.message
+      })
     }
   }
 
   useEffect(() => {
-    getAllDataSurvey()
+    getAllDataSurveyByCompany()
   }, [dispatch, currentPage])
+
   return (
     <Layout>
       <TableSurveyor

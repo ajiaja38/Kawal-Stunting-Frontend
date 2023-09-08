@@ -13,6 +13,11 @@ export const setDataSurvey = (dataSurvey) => ({
   payload: dataSurvey
 })
 
+export const setDataSurveyByCompany = (dataSurveyByCompany) => ({
+  type: 'SET_DATA_SURVEY_BY_COMPANY',
+  payload: dataSurveyByCompany
+})
+
 export const setSelectedProvinsi = (provinsi) => ({
   type: 'SET_PROVINSI',
   payload: provinsi

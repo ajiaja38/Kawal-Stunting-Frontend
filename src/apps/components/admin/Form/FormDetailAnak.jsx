@@ -5,6 +5,8 @@ import SourceStuntingAPI from '../../../api/resource/SourceStunting'
 import Swal from 'sweetalert2'
 import SourceUploader from '../../../api/resource/SourceUploader'
 import { useNavigate } from 'react-router-dom'
+import FormDokument from './FormDokument'
+import FormHistory from './FormHistory'
 
 const FormDetailAnak = ({ guid }) => {
   const navigate = useNavigate()
@@ -23,6 +25,7 @@ const FormDetailAnak = ({ guid }) => {
   const [tanggal_lahir, setTanggalLahir] = useState(new Date())
   const [NIK_Anak, setNIKAnak] = useState('')
   const [guidCompany, setGuidCompany] = useState('')
+  const [is_valid, setIsvalid] = useState(false)
 
   const [activeTab, setActiveTab] = useState('detail')
 
@@ -32,6 +35,10 @@ const FormDetailAnak = ({ guid }) => {
 
   const switchToDocumentTab = () => {
     setActiveTab('document')
+  }
+
+  const switchToHsitoryTab = () => {
+    setActiveTab('history')
   }
 
   const jenisKelamin = ['Laki-laki', 'Perempuan']
@@ -54,6 +61,7 @@ const FormDetailAnak = ({ guid }) => {
       setTanggalLahir(response.tanggal_lahir)
       setNIKAnak(response.NIK_Anak)
       setGuidCompany(response.guidCompany)
+      setIsvalid(response.is_valid)
     } catch (error) {
       console.log(error.response.data.message)
     }
@@ -118,6 +126,16 @@ const FormDetailAnak = ({ guid }) => {
         text: error.response.data.message
       })
     }
+  }
+
+  const handleShowImage = (url) => {
+    Swal.fire({
+      html: /* html */`
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <img src="${url}" style="object-fit: cover; width: 80%; height: 20rem;">
+      </div>`,
+      showConfirmButton: false
+    })
   }
 
   const handleImageKtpAyah = async (e) => {
@@ -308,6 +326,14 @@ const FormDetailAnak = ({ guid }) => {
         >
           Dokumen
         </button>
+        <button
+          className={`p-2 rounded-md ${
+            activeTab === 'history' ? 'bg-yellow-400' : 'bg-gray-300'
+          }`}
+          onClick={switchToHsitoryTab}
+        >
+          History
+        </button>
       </div>
       {activeTab === 'detail' && (
         <div className='w-full p-3 mb-10 flex justify-around'>
@@ -435,221 +461,32 @@ const FormDetailAnak = ({ guid }) => {
               Edit
             </button>
             <button
+             disabled={!!is_valid}
               onClick={alert}
-              className='p-2 text-white h-10 mt-7 rounded-md bg-red-400 hover:bg-red-300 active:bg-red-500 transition-all ease-in-out duration-100'
+              className={`p-2 text-white h-10 mt-7 rounded-md ${is_valid ? 'bg-gray-300' : 'bg-main hover:bg-secondary active:bg-main'} transition-all ease-in-out duration-100`}
             >
-              Validasi
+              { is_valid ? 'Data Sudah Valid' : 'Validasi' }
             </button>
           </div>
         </div>
       )}
       {activeTab === 'document' && (
-        <div className='grid grid-cols-4 gap-4'>
-          <div className='flex flex-col justify-start items-center gap-2'>
-            <label className='font-bold'>Foto Anak</label>
-            {image !== null && image !== '' && image !== 'N/A' && image !== 'profile.png'
-              ? (
-                <img
-                  src={image}
-                  className='w-60 h-60 object-cover object-center border'
-                  alt='Foto Anak'
-                />
-                )
-              : (
-                <div className='w-60 h-60 bg-gray-200 flex justify-center items-center'>
-                  <svg
-                    className='w-24 h-24 text-gray-400'
-                    fill='currentColor'
-                    viewBox='0 0 20 20'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      fillRule='evenodd'
-                      d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
-                      clipRule='evenodd'
-                    />
-                  </svg>
-                </div>
-                )}
-            <input
-              type='file'
-              accept='image/*'
-              className='opacity-0 -mt-9'
-              id='image-upload'
-              onChange={handleImageAnak}
-            />
-            <label
-              htmlFor='image-upload'
-              className='text-center bg-yellow-300 cursor-pointer rounded-md px-2 py-1'
-            >
-              Edit Gambar Anak
-            </label>
-          </div>
-
-          <div className='flex flex-col justify-start items-center gap-2'>
-            <label className='font-bold'>Foto Ktp Ayah</label>
-            {FILE_KTP_Ayah !== null && FILE_KTP_Ayah !== '' && FILE_KTP_Ayah !== 'N/A' && FILE_KTP_Ayah !== 'profile.png'
-              ? (
-                <img
-                  src={FILE_KTP_Ayah}
-                  className='w-60 h-60 object-cover object-center border'
-                  alt='KTP Ayah'
-                />
-                )
-              : (
-                <div className='w-60 h-60 bg-gray-200 flex justify-center items-center'>
-                  <svg
-                    className='w-24 h-24 text-gray-400'
-                    fill='currentColor'
-                    viewBox='0 0 20 20'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      fillRule='evenodd'
-                      d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
-                      clipRule='evenodd'
-                    />
-                  </svg>
-                </div>
-                )}
-            <input
-              type='file'
-              accept='image/*'
-              className='opacity-0 -mt-9'
-              id='image-uploaded-ktp-ayah'
-              onChange={handleImageKtpAyah}
-            />
-            <label
-              htmlFor='image-uploaded-ktp-ayah'
-              className='text-center bg-yellow-300 cursor-pointer rounded-md px-2 py-1'
-            >
-              Edit KTP Ayah
-            </label>
-          </div>
-
-          <div className='flex flex-col justify-start items-center gap-2'>
-            <label className='font-bold'>Foto Ktp Ibu</label>
-            {FILE_KTP_Ibu !== null && FILE_KTP_Ibu !== '' && FILE_KTP_Ibu !== 'N/A' && FILE_KTP_Ibu !== 'profile.png'
-              ? (
-                <img
-                  src={FILE_KTP_Ibu}
-                  className='w-60 h-60 object-cover object-center border'
-                  alt='KTP Ayah'
-                />
-                )
-              : (
-                <div className='w-60 h-60 bg-gray-200 flex justify-center items-center'>
-                  <svg
-                    className='w-24 h-24 text-gray-400'
-                    fill='currentColor'
-                    viewBox='0 0 20 20'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      fillRule='evenodd'
-                      d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
-                      clipRule='evenodd'
-                    />
-                  </svg>
-                </div>
-                )}
-            <input
-              type='file'
-              accept='image/*'
-              className='opacity-0 -mt-9'
-              id='image-uploaded-ktp-ibu'
-              onChange={handleImageKtpIbu}
-            />
-            <label
-              htmlFor='image-uploaded-ktp-ibu'
-              className='text-center bg-yellow-300 cursor-pointer rounded-md px-2 py-1'
-            >
-              Edit KTP Ibu
-            </label>
-          </div>
-
-          <div className='flex flex-col justify-start items-center gap-2'>
-            <label className='font-bold'>Foto Kartu Keluarga</label>
-            {FILE_KK !== null && FILE_KK !== '' && FILE_KK !== 'N/A' && FILE_KK !== 'profile.png'
-              ? (
-                <img
-                  src={FILE_KK}
-                  className='w-60 h-60 object-cover object-center border'
-                  alt='KTP Ayah'
-                />
-                )
-              : (
-                <div className='w-60 h-60 bg-gray-200 flex justify-center items-center'>
-                  <svg
-                    className='w-24 h-24 text-gray-400'
-                    fill='currentColor'
-                    viewBox='0 0 20 20'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      fillRule='evenodd'
-                      d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
-                      clipRule='evenodd'
-                    />
-                  </svg>
-                </div>
-                )}
-            <input
-              type='file'
-              accept='image/*'
-              className='opacity-0 -mt-9'
-              id='image-uploaded-kk'
-              onChange={handleImageKK}
-            />
-            <label
-              htmlFor='image-uploaded-kk'
-              className='text-center bg-yellow-300 cursor-pointer rounded-md px-2 py-1'
-            >
-              Edit Kartu Keluarga
-            </label>
-          </div>
-
-          <div className='flex flex-col justify-start items-center gap-2'>
-            <label className='font-bold'>Foto Akta Kelahiran</label>
-            {FILE_AKTA !== null && FILE_AKTA !== '' && FILE_AKTA !== 'N/A' && FILE_AKTA !== 'profile.png'
-              ? (
-                <img
-                  src={FILE_AKTA}
-                  className='w-60 h-60 object-cover object-center border'
-                  alt='KTP Ayah'
-                />
-                )
-              : (
-                <div className='w-60 h-60 bg-gray-200 flex justify-center items-center'>
-                  <svg
-                    className='w-24 h-24 text-gray-400'
-                    fill='currentColor'
-                    viewBox='0 0 20 20'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      fillRule='evenodd'
-                      d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
-                      clipRule='evenodd'
-                    />
-                  </svg>
-                </div>
-                )}
-            <input
-              type='file'
-              accept='image/*'
-              className='opacity-0 -mt-9'
-              id='image-uploaded-akta'
-              onChange={handleImageAkta}
-            />
-            <label
-              htmlFor='image-uploaded-akta'
-              className='text-center bg-yellow-300 cursor-pointer rounded-md px-2 py-1'
-            >
-              Edit Akta Kelahiran
-            </label>
-          </div>
-        </div>
+        <FormDokument
+          image={image}
+          FILE_KTP_Ayah={FILE_KTP_Ayah}
+          FILE_KTP_Ibu={FILE_KTP_Ibu}
+          FILE_KK={FILE_KK}
+          FILE_AKTA={FILE_AKTA}
+          handleImageAnak={handleImageAnak}
+          handleImageKtpAyah={handleImageKtpAyah}
+          handleImageKtpIbu={handleImageKtpIbu}
+          handleImageKK={handleImageKK}
+          handleImageAkta={handleImageAkta}
+          handleShowImage={handleShowImage}
+        />
+      )}
+      {activeTab === 'history' && (
+        <FormHistory/>
       )}
     </div>
   )
