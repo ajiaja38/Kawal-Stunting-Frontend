@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Pagination from './Pagination'
 
 const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
   const { dataSurveyByCompany } = useSelector((state) => state.data)
+  const [selectedDate, setSelectedDate] = useState(null)
 
   const formatDate = (inputDate) => {
     const date = new Date(inputDate)
@@ -33,8 +34,26 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
     return `${formattedDay} ${formattedMonth} ${year}`
   }
 
+  const filteredData = selectedDate
+    ? dataSurveyByCompany.filter((data) =>
+      data.updatedAt.includes(selectedDate)
+    )
+    : dataSurveyByCompany
+
   return (
     <div className="w-full">
+      <div className="mb-4 flex items-center">
+        <label htmlFor="filterDate" className="mr-2 font-semibold">
+          Filter Date:
+        </label>
+        <input
+          type="date"
+          id="filterDate"
+          value={selectedDate || ''}
+          onChange={(e) => setSelectedDate(e.target.value)}
+          className='p-2 border rounded'
+        />
+      </div>
       <div
         className="
         bg-gray-50
@@ -68,28 +87,39 @@ const TableSurveyor = ({ totalPages, currentPage, setCurrentPage }) => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            {dataSurveyByCompany.map((data, index) => (
-              <tr
-                key={index}
-                className="hover:bg-white transition-all ease-in-out"
-              >
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">
-                  {index + 1 + (currentPage - 1) * 30}.
-                </td>
-                <td className="whitespace-normal px-4 py-2 text-gray-700">
-                  {data.namaSurveyor}
-                </td>
-                <td className="whitespace-normal px-4 py-2 text-gray-700">
-                  {data.namaAnak}
-                </td>
-                <td className="whitespace-normal px-4 py-2 text-gray-700">
-                  {data.dataSurvey.catatan}
-                </td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                  {formatDate(data.updatedAt)}
-                </td>
-              </tr>
-            ))}
+            {filteredData.length
+              ? (
+                  filteredData.map((data, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-white transition-all ease-in-out"
+                    >
+                      <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">
+                        {index + 1 + (currentPage - 1) * 30}.
+                      </td>
+                      <td className="whitespace-normal px-4 py-2 text-gray-700">
+                        {data.namaSurveyor}
+                      </td>
+                      <td className="whitespace-normal px-4 py-2 text-gray-700">
+                        {data.namaAnak}
+                      </td>
+                      <td className="whitespace-normal px-4 py-2 text-gray-700">
+                        {data.dataSurvey.catatan === '' ? '-' : data.dataSurvey.catatan}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                        {formatDate(data.updatedAt)}
+                      </td>
+                    </tr>
+                  ))
+                )
+              : (
+                <tr>
+                  <td colSpan="5" className="text-center py-4">
+                    Tidak Ada Data pada tanggal {selectedDate}
+                  </td>
+                </tr>
+                )
+            }
           </tbody>
         </table>
       </div>

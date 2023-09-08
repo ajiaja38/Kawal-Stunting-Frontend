@@ -23,7 +23,8 @@ const API_ENDPOINT_NEST = {
   UPLOADER: `${BASE_URL_V2}/uploader`,
   AUTHENTICATION: `${BASE_URL_V2}/auth/loginAdmin`,
   COMPANY: `${BASE_URL_V2}/company`,
-  GET_ALL_DATA_SURVEY_BY_COMPANY: (page) => `${BASE_URL_V2}/survey/getByCompanyId?page=${page}&limit=30`
+  GET_ALL_DATA_SURVEY_BY_COMPANY: (page) => `${BASE_URL_V2}/survey/getByCompanyId?page=${page}&limit=30`,
+  GET_HISTORY_SURVEY_BY_GUID_ANAK: (guid, page) => `${BASE_URL_V2}/survey/getByGuidAnak/${guid}?page=${page}&limit=5`
 }
 
 export {

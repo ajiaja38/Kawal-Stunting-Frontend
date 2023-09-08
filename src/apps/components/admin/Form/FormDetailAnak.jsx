@@ -486,7 +486,7 @@ const FormDetailAnak = ({ guid }) => {
         />
       )}
       {activeTab === 'history' && (
-        <FormHistory/>
+        <FormHistory guid={guid} nama={nama}/>
       )}
     </div>
   )
