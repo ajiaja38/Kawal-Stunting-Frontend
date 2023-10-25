@@ -24,7 +24,8 @@ const API_ENDPOINT_NEST = {
   AUTHENTICATION: `${BASE_URL_V2}/auth/loginAdmin`,
   COMPANY: `${BASE_URL_V2}/company`,
   GET_ALL_DATA_SURVEY_BY_COMPANY: (page) => `${BASE_URL_V2}/survey/getByCompanyId?page=${page}&limit=30`,
-  GET_HISTORY_SURVEY_BY_GUID_ANAK: (guid, page) => `${BASE_URL_V2}/survey/getByGuidAnak/${guid}?page=${page}&limit=5`
+  GET_HISTORY_SURVEY_BY_GUID_ANAK: (guid, page) => `${BASE_URL_V2}/survey/getByGuidAnak/${guid}?page=${page}&limit=5`,
+  DOWNLOAD_DATA_ANAK: `${BASE_URL_V2}/anak/data/download`
 }
 
 export {

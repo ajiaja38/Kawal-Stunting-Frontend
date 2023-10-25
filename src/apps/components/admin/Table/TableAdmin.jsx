@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Pagination from './Pagination'
 import { useSelector } from 'react-redux'
 import SearchForm from '../Form/SearchForm'
+import ButtonExportData from './utils/ButtonExport'
 // import ButtonFilter from './utils/ButtonFilter'
 
 const TableAdmin = ({ setSearch, totalPages = 1, currentPage = 1, setCurrentPage }) => {
@@ -14,6 +15,7 @@ const TableAdmin = ({ setSearch, totalPages = 1, currentPage = 1, setCurrentPage
     <div className='w-full mb-10'>
 
       <div className='text-right mb-2 flex gap-2 justify-end'>
+        <ButtonExportData/>
         <SearchForm setSearch={setSearch}/>
         {/* <ButtonFilter/> */}
         {/* <ButtonAddData/> */}
