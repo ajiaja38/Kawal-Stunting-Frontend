@@ -19,6 +19,7 @@ const API_ENDPOINT = {
 
 const API_ENDPOINT_NEST = {
   GET_ALL_DATA_ANAK_PAGINATE: (search, guid, page) => `${BASE_URL_V2}/anak/paginate/${guid}?search=${search}&page=${page}&limit=30`,
+  GET_ALL_DATA_LOCATION: `${BASE_URL_V2}/anak/byCompany/location`,
   DATA_ANAK_BY_GUID: (guid) => `${BASE_URL_V2}/anak/${guid}`,
   UPLOADER: `${BASE_URL_V2}/uploader`,
   AUTHENTICATION: `${BASE_URL_V2}/auth/loginAdmin`,

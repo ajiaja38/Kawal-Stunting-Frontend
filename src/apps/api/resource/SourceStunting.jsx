@@ -9,6 +9,7 @@ const {
 
 const {
   GET_ALL_DATA_ANAK_PAGINATE,
+  GET_ALL_DATA_LOCATION,
   DATA_ANAK_BY_GUID,
   DOWNLOAD_DATA_ANAK
 } = API_ENDPOINT_NEST
@@ -36,6 +37,15 @@ class SourceStuntingAPI {
 
   static async getDataForMaps (guid) {
     const response = await axios.get(GET_MAPS(guid))
+    return response.data.data
+  }
+
+  static async getAllDataLocation () {
+    const response = await axios.get(GET_ALL_DATA_LOCATION, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
     return response.data.data
   }
 

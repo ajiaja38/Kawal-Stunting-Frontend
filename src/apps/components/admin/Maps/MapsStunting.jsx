@@ -30,7 +30,7 @@ const MapsStunting = () => {
             maps.map((data, index) => (
               <Marker
                 key={index}
-                position={[data.LAT, data.LONG]}
+                position={[data.latitude, data.longitude]}
                 icon={new Icon({ iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41] })}
                 eventHandlers={{
                   mouseover: (e) => {
@@ -45,9 +45,9 @@ const MapsStunting = () => {
                       justify-center items-center
                     '
                   >
-                    { data.NAME }
+                    { data.nama }
 
-                    <Link to={`/data-anak/${data.GUID}`}>
+                    <Link to={`/data-anak/${data.guid}`}>
                       <button
                         className='
                           p-2
